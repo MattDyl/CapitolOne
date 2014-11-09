@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+  body {background-color:lightgray}
+  h1   {color:blue;}
+  p.positive	{color:green;
+		font-size: 3em;
+		<!--border:0.1em solid black;
+		border-size: 2em;-->
+		}
+  #canvas-holder{float: right;
+				margin-right: 25em;}
+				
+  #chart-area{float:left;}
+  
+  .textbox { 
+    -moz-border-radius-topright: 30px; 
+    -webkit-border-top-right-radius: 30px; 
+    border-top-right-radius: 30px; 
+    -moz-border-radius-bottomright: 30px; 
+    -webkit-border-bottom-right-radius: 30px; 
+    border-bottom-right-radius: 30px; 
+    border: 1px solid #848484; 
+    outline:0; 
+    height:25px; 
+    width: 275px; 
+    padding-right:10px; 
+  } 
+</style>
+		<title>Pie Chart</title>
+		<script src="../Chart.js"></script>
+	</head>
+	<body>
+		<div id="canvas-holder">
+			<canvas id="chart-area" width="400" height="400"/>
+		</div>
+
+		<div class="add-info-all">
+    <div class="rightfloat">
+           <p class = "positive"> Weekly Allowance: <span id="Weekly-Allowance"></span> </p>
+		   <p class = "button"><button type = "button" onclick="add_expense();"> Add Expense </button> </p>
+		   <form id="input" action="form_action.asp">
+		   Expense Name: <input class="textbox"type="text" name="Input-name" value="">  <br><br> 
+		   Cost: <input class="textbox"type="text" name="Amount" value= ""> <br><br> 
+		   </form>
+		   <p class = "positive">Current Balance:  <span id="Current-Balance"></span> </p>
+		   
+        </div>
+ 
+</div>
+
+<div id="pie-data">
+	<script>
+		var length = 1;
+		var dynamic = 100;
+		var pieData = [
+			{
+					value: 800,
+					color:"#F7464A",
+					highlight: "#FF5A5E",
+					label: "Red"
+				},
+				{
+					value: 0,
+					color: "#46BFBD",
+					highlight: "#5AD3D1",
+					label: "Green"
+				},
+				{
+					value: 0,
+					color: "#FDB45C",
+					highlight: "#FFC870",
+					label: "Yellow"
+				},
+				{
+					value: 0,
+					color: "#949FB1",
+					highlight: "#A8B3C5",
+					label: "Grey"
+				},
+				{
+					value: 0,
+					color: "#4D5360",
+					highlight: "#616774",
+					label: "Dark Grey"
+				},
+				{
+					value: 0,
+					color: "#46BFBD",
+					highlight: "#5AD3D1",
+					label: "Green"
+				},
+				{
+					value: 0,
+					color: "#FDB45C",
+					highlight: "#FFC870",
+					label: "Yellow"
+				},
+				{
+					value: 0,
+					color: "#949FB1",
+					highlight: "#A8B3C5",
+					label: "Grey"
+				},
+				{
+					value: 0,
+					color: "#4D5360",
+					highlight: "#616774",
+					label: "Dark Grey"
+				}
+
+				
+
+			];
+
+			function getRandomColor(){
+				var letters = '0123456789ABCDEF'.split('');
+				var color;
+				for(var i = 0; i<6; i++){
+				color = letters[Math.floor(Math.random() * 16)];
+				}
+				return color;
+			}
+			function add_expense(){
+				
+				  
+				var x = document.getElementById("input");
+				
+				var expense_name = "";
+				
+				var cost = 0;
+				
+					expense_name = x.elements[0].value;
+										
+					cost = x.elements[1].value;
+					x.elements[0].value = "";
+					x.elements[1].value = "";
+					if(cost && expense_name) {
+					if((myPie.segments[0].value - parseInt(cost))<0) alert("You do not have enough money");
+					else{
+					if((myPie.segments[0].value - parseInt(cost))==0){ 
+					alert("You have used up all your money");
+					}
+					
+					alert(myPie.segments[0].value);
+					myPie.segments[0].value = parseInt(myPie.segments[0].value -cost); //Calculating new balance
+					document.getElementById("Current-Balance").innerHTML = myPie.segments[0].value; //displaying new balance
+					alert(myPie.segments[0].value);
+					
+					myPie.segments[length].value = parseInt(cost);
+					
+					myPie.segments[length].label = expense_name;
+					
+					//myPie.addData([cost, "#4D3560", "#FFC870"], expense_name);
+					//myPie.segments[length].color = "#" + rand_color;
+					//myPie.segments[length].highlight = "#" (rand_color - 141414);
+					//alert(myPie.segments[length].value + myPie.segments[length].label);
+					myPie.update();
+					//alert(myPie.segments[0].value + myPie.segments[0].label);
+					//alert(myPie.segments[length].value + myPie.segments[length].label);
+					length++;
+					}
+					}
+			}
+			
+			window.onload = function(){
+				var ctx = document.getElementById("chart-area").getContext("2d");
+				window.myPie = new Chart(ctx).Pie(pieData);
+				document.getElementById("Weekly-Allowance").innerHTML = "$500";
+				document.getElementById("Current-Balance").innerHTML = "$800";
+				 
+			};
+
+			
+			
+			window.onclick = function(){
+				//myPie.segments[1].value = dynamic;
+				// Would update the first dataset's value of 'Green' to be 10
+				//myPie.update();
+			};
+			
+			
+			
+	</script>
+	</div>
+	</body>
+</html>
