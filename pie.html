@@ -1,0 +1,369 @@
+<!doctype html>
+<html>
+	<head>
+	<link href="/normalize.css" rel="stylesheet">
+	<link rel="shortcut icon" href="icon.ico">
+		<style>
+  header{
+	  	 background-size: auto;
+	     text-align: center;
+		 
+  }
+			
+  body {background: url(background.jpg)}
+			
+  h1   { 
+	  	
+	  	 text-align: center;
+	  	 font-family: 'Capture it';
+	  	 font-size: 50px;
+	  	 color:silver;
+	  	
+  }
+			
+  p	{
+      
+      margin-left: 220px;
+      vertical-align: middle;
+      color: #333333;
+      font-family: ‘Lucida Console’, Monaco, monospace;
+      font-size: 20px;
+		<!--border:0.1em solid black;
+		border-size: 2em;-->
+		}
+	
+  #canvas-holder{float: right;
+				margin-right: 10em;
+				}
+				
+  #chart-area{float:left;}
+  
+  .textbox { 
+    -moz-border-radius-topright: 30px; 
+    -webkit-border-top-right-radius: 30px; 
+     -moz-border-radius-topleft: 30px; 
+    -webkit-border-top-left-radius: 30px; 
+    border-top-right-radius: 30px; 
+    -moz-border-radius-bottomright: 30px; 
+    -webkit-border-bottom-right-radius: 30px; 
+    border-bottom-right-radius: 30px; 
+      border-top-left-radius: 30px; 
+    -moz-border-radius-bottomleft: 30px; 
+    -webkit-border-bottom-left-radius: 30px; 
+    border-bottom-leftt-radius: 30px; 
+    border: 1px solid #848484; 
+    outline:0; 
+    height:25px; 
+    width: 275px; 
+    padding-right:10px; 
+    margin-left: 200px; 
+    vertical-align: center;
+    text-align:center;
+  } 
+button1 {
+   margin-left: 280px;
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;  
+   font-size: 20px;
+   font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+   vertical-align: center;
+   font-color: silver;
+   width: 220px;
+   }
+button1:hover {
+   border-top-color: #4c6e85;
+   background: #4c6e85;
+   color: #ccc;
+   }
+button1:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+            
+  button {
+   margin-left: 90px;
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;  
+   font-size: 20px;
+   font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+   vertical-align: center;
+   color: black;
+   width: 200px;
+   margin-bottom: 20px;
+   }
+button:hover {
+   border-top-color: #4c6e85;
+   background: #4c6e85;
+   color: #ccc;
+   }
+button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }   
+   
+button2 {
+margin-left:240px;
+height: 30px;
+text-align:center;
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;  
+   font-size: 20px;
+   font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+   vertical-align: center;
+   color: black;
+   width: 200px;
+   display:block;
+   }
+button2:hover {
+   border-top-color: #4c6e85;
+   background: #4c6e85;
+   color: #ccc;
+   }
+button2:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+
+p.History{
+text-align:center;
+display: inline;
+margin:10;
+}   
+#white-background{
+background: #CCC;
+padding-top: 0.8em;
+padding-bottom: 0.4em;
+margin-left: 5em;
+margin-right: 5em;
+}
+</style>
+</style>
+		<title>Parent2Child</title>
+		<script src="Chart.js"></script>
+		
+	</head>
+	<body>
+	<header> <h1>Parent2Child: Child Account</h1>
+	</header>
+	<div id="white-background">
+		<div id="canvas-holder">
+			<canvas id="chart-area" width="400" height="400"/>
+		</div>
+		
+
+		
+    <div class="rightfloat">
+           <p class = "WeeklyAllowance"> Weekly Allowance: <span id="Weekly-Allowance"></span> </p>
+		    
+		   <form id="input" action="form_action.asp">
+		   <input class="textbox"type="text" name="Input-name" value="" placeholder= "Food">  <br><br> 
+		   <input class="textbox"type="text" name="Amount" value= "" placeholder = "50"> <br><br> 
+		   </form>
+		   <button2 type = "button1" onclick="add_expense();"> Add Expense </button2> <br><br>
+		   <p class = "Balance">Current Balance:  <span id="Current-Balance"></span> </p>
+		    
+		   <button2 type = "button2" onclick="history();"> Save </button2> <br><br>
+		   <button type = "button" onclick="previous_months();"> Previous Month Reports </button>
+		   <button type = "button" onclick="parent_approval();"> Submit for Parent Approval </button> 
+		   <br><br><br><br>
+		  <p class = "History"> <span id="History"></span> </p>
+        </div>
+</div>
+
+
+	<script>
+					var myElement = document.getElementById("Current-Balance");
+					myElement.style.color = "green";
+					var myElement4 = document.getElementById("Weekly-Allowance");
+					myElement4.style.color = "green";
+		var length = 1;
+		var dynamic = 100;
+		var pieData = [
+			{
+					value: 800,
+					color: "#6DB45C",
+					highlight: "#81C870",
+					label: "Balance"
+				},
+				{
+					value: 0,
+					color: "#F7464A",
+					highlight: "#FF5A5E",
+					label: "Green"
+				},
+				{
+					value: 0,
+					color: "#FDB45C",
+					highlight: "#FFC870",
+					label: "Yellow"
+				},
+				{
+					value: 0,
+					color: "#949FB1",
+					highlight: "#A8B3C5",
+					label: "Grey"
+				},
+				{
+					value: 0,
+					color: "#4D5360",
+					highlight: "#616774",
+					label: "Dark Grey"
+				},
+				{
+					value: 0,
+					color: "#57BCBD",
+					highlight: "#6BD0D1",
+					label: "Green"
+				},
+				{
+					value: 0,
+					color: "#CD2990",
+					highlight: "#E136A4",
+					label: "Yellow"
+				},
+				{
+					value: 0,
+					color: "#249FB1",
+					highlight: "#38B3C5",
+					label: "Grey"
+				},
+				{
+					value: 0,
+					color: "#3D5360",
+					highlight: "#516774",
+					label: "Dark Grey"
+				}
+
+				
+
+			];
+
+			function getRandomColor(){
+				var letters = '0123456789ABCDEF'.split('');
+				var color;
+				for(var i = 0; i<6; i++){
+				color = letters[Math.floor(Math.random() * 16)];
+				}
+				return color;
+			}
+			
+			function expense_exists(expense){
+			var index;
+			for(i = 0; i<pieData.length; i++){
+				if(expense == myPie.segments[i].label){ 
+				index = i;
+				}
+			}
+			return index;
+			}
+			
+			function add_expense(){
+				
+				  
+				var x = document.getElementById("input");
+				
+				var expense_name = "";
+				
+				var cost = 0;
+				
+					expense_name = x.elements[0].value;
+										
+					cost = x.elements[1].value;
+					x.elements[0].value = "";
+					x.elements[1].value = "";
+					if(cost && expense_name) {
+					if((myPie.segments[0].value - parseInt(cost))<0) alert("You do not have enough money");
+					else{
+					if((myPie.segments[0].value - parseInt(cost))==0){ 
+					alert("You have used up all your money");
+					}
+					
+					
+					myPie.segments[0].value = parseInt(myPie.segments[0].value -cost); //Calculating new balance
+					
+					if(myPie.segments[0].value>0){
+					document.getElementById("Current-Balance").innerHTML = "$" + myPie.segments[0].value; //displaying new balance
+					if(myPie.segments[0].value<=300){
+					alert("Warning: You are approaching your spending limit")
+					}
+					}
+					else if(myPie.segments[0].value==0){
+					document.getElementById("Current-Balance").innerHTML = "$" + myPie.segments[0].value;
+					var myElement = document.getElementById("Current-Balance");
+					myElement.style.color = "red";
+					 //displaying new balance in red
+					}
+					//alert(myPie.segments[0].value);
+					var e_match = expense_exists(expense_name);
+					if(e_match){
+					myPie.segments[e_match].value = myPie.segments[e_match].value + parseInt(cost);
+					myPie.update();
+					}
+					else{
+					myPie.segments[length].value = parseInt(cost);
+					
+					myPie.segments[length].label = expense_name;
+					
+					//myPie.addData([cost, "#4D3560", "#FFC870"], expense_name);
+					//myPie.segments[length].color = "#" + rand_color;
+					//myPie.segments[length].highlight = "#" (rand_color - 141414);
+					//alert(myPie.segments[length].value + myPie.segments[length].label);
+					myPie.update();
+					//alert(myPie.segments[0].value + myPie.segments[0].label);
+					//alert(myPie.segments[length].value + myPie.segments[length].label);
+					length++;
+					}
+					}
+					}
+			}
+			
+			function history(){
+			var myElement5 = document.getElementById("History");
+					myElement5.style.visibility = "visible";
+			var output = "Summary: Current Balance = 800 ";
+			for(i = 0; i<length-1; i++){
+				output += "- " + myPie.segments[i+1].value + "(" + myPie.segments[i+1].label + ") ";
+			}
+				document.getElementById("History").innerHTML = output ;
+			}
+			
+			function previous_months(){
+			window.open("list.html");
+			}
+			
+			function parent_approval(){
+			alert("Your budget request has been submitted");
+			
+			}
+			
+			window.onload = function(){
+				var ctx = document.getElementById("chart-area").getContext("2d");
+				window.myPie = new Chart(ctx).Pie(pieData);
+				document.getElementById("Weekly-Allowance").innerHTML = "$500";
+				document.getElementById("Current-Balance").innerHTML = "$800";
+				 
+			};
+
+			
+			
+			window.onclick = function(){
+				//myPie.segments[1].value = dynamic;
+				// Would update the first dataset's value of 'Green' to be 10
+				//myPie.update();
+			};
+			
+			
+			
+	</script>
+
+	</body>
+</html>

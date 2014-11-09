@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+  body {background: url(background.jpg)}
+  h1   {color:blue;}
+  p	{color:White;
+		font-size: 3em;
+		}
+  #canvas-holder{float: right;
+				margin-right: 25em;}
+				
+  #chart-area{float:left;}
+  
+  
+</style>
+		<title>Pie Chart</title>
+		<script src="Chart.js"></script>
+	</head>
+	<body>
+		<div id="canvas-holder">
+			<canvas id="chart-area" width="400" height="400"/>
+		</div>
+	
+		<div class="rightfloat">
+           <p class = "positive"> July 2014 <span id="Weekly-Allowance"></span> </p>
+			<br>
+		   <p class = "positive">Total Amount: $495  <span id="Current-Balance"></span> </p>
+		   
+        </div>
+
+<div id="pie-data">
+	<script>
+		var pieData = [
+				{
+					value: 0,
+					color: "#6DB45C",
+					highlight: "#81C870",
+					label: "Balance",
+					labelColor: 'white',
+					labelFontSize: '14'
+				},
+				{
+					value: 230,
+					color: "#46BFBD",
+					highlight: "#5AD3D1",
+					label: "Pokemon Cards"
+				},
+				{
+					value: 45,
+					color: "#FDB45C",
+					highlight: "#FFC870",
+					label: "Candy"
+				},
+				{
+					value: 200,
+					color: "#949FB1",
+					highlight: "#A8B3C5",
+					label: "Destiny"
+				},
+				{
+					value: 20,
+					color: "#4D5360",
+					highlight: "#616774",
+					label: "Mom's Face"
+				}
+			];
+			
+			var total=0;
+			window.onload = function(){
+				var ctx = document.getElementById("chart-area").getContext("2d");
+				window.myPie = new Chart(ctx).Pie(pieData);
+				//var total = 0;
+				for(i = 0; i < pieData.length; i++){
+					total += myPie.segments[i].value;
+				}
+				document.getElementByID("Current-Balance").innerHTML = "$"+total.toString();
+				
+				
+				 //var myLine = new Chart(document.getElementById("canvas_pie_with_text_2").getContext("2d")).Pie(mydata2,crosstxt2);
+				 
+			};			
+			window.onclick = function(){
+			}
+	</script>
+	</div>
+	</body>
+</html>

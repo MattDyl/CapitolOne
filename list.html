@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+  body {background: url(background.jpg)}
+   h1   { 
+	  	
+	  	 text-align: center;
+	  	 font-family: 'Capture it';
+	  	 font-size: 50px;
+	  	 color:silver;
+	  	
+  }
+  p	{color:black;
+		font-size: 1em;
+		<!--border:0.1em solid black;
+		border-size: 2em;-->
+		}
+button {
+	
+   margin-left: 29em;
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   -webkit-border-radius: 40px;
+   -moz-border-radius: 40px;
+   border-radius: 40px;  
+   font-size: 20px;
+   font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+   vertical-align: center;
+   font-color: silver;
+   width: 200px;
+   }
+button:hover {
+   border-top-color: #4c6e85;
+   background: #4c6e85;
+   color: #ccc;
+   }
+button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+  
+</style>
+		<title>Statements</title>
+	</head>
+	<body>
+		<h1> Past Budgets</h1>
+
+    <div class="rightfloat">
+		
+		   <p class = "button"><button type = "button" onclick="select_may();"> May </button> </p>
+		   <p class = "button"><button type = "button" onclick="select_jun();"> June </button> </p>
+		   <p class = "button"><button type = "button" onclick="select_jul();"> July </button> </p>
+		   <p class = "button"><button type = "button" onclick="select_aug();"> August </button> </p>
+		   <p class = "button"><button type = "button" onclick="select_sep();"> September </button> </p>
+		   <p class = "button"><button type = "button" onclick="select_oct();"> October </button> </p>
+		   
+        </div>
+ 
+
+
+<div id="pie-data">
+	<script>
+					
+			
+			window.onload = function(){
+
+			};
+			
+			function select_may(){
+				window.open("may2014.html");
+			}
+			
+			function select_jun(){
+				window.open("jun2014.html");
+			}
+			
+			function select_jul(){
+				window.open("jul2014.html");
+			}
+			
+			function select_aug(){
+				window.open("aug2014.html");
+			}
+			
+			function select_sep(){
+				window.open("sep2014.html");
+			}
+			
+			function select_oct(){
+				window.open("oct2014.html");
+			}
+			
+			window.onclick = function(){
+				//myPie.segments[1].value = dynamic;
+				// Would update the first dataset's value of 'Green' to be 10
+				//myPie.update();
+			};
+			
+			
+			
+	</script>
+	</div>
+	</body>
+</html>
